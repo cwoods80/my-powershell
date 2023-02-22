@@ -1,0 +1,12 @@
+#2/22/2023 Powershell to move files from one directory to another based on a list
+
+$file_list = Get-Content c:\list.txt
+$search_folder = c:\files
+$destination_folder = c:\files2
+
+foreach ($file in $file_list) {
+  $file_to_move = Get-ChildItem -Path $search_folder -Filter $file -Recurse -ErrorAction SilentlyContinue -Force | % { $._FullName}
+  if ($file_to_move) {
+    Move-Item $file_to_move $destination_folder
+  }
+}
