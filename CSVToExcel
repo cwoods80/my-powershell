@@ -1,0 +1,6 @@
+# takes a pipe delimited csv and converts it to excel
+
+$from=$args[0]
+$new=$args[1]
+
+Import-Csv -path $from -Delimiter "|" | Export-Excel -Path $new -Autosize
